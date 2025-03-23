@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143002347802",
+    "project_id": "myapp-7263b",
+    "storage_bucket": "myapp-7263b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143002347802:android:59b8b4e2f582fbda1b24a3",
+        "android_client_info": {
+          "package_name": "ru.stepanmakeev.a1projectborisproit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4_zcEMgU0mKtSBJrkqi6ncqYw0FQcYGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
