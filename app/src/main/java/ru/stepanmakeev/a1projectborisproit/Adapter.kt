@@ -32,7 +32,7 @@ class Adapter(private val list: List<ResultX>?, val mItemClickListener: ItemClic
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = list?.get(position) // ((( 0 1 2 3 4 5 6 ...)))
-                            // основная ссылка откуда подгрузка          позиция с которой подгружает + ЧТО именно       into - куда подгружаем ! В имейджВью из 46 строки
+                            // основная ссылка откуда подгрузка          позиция с которой подгружает + ЧТО именно       into - куда подгружаем ! В имейджВью из 53 строки
         Picasso.get().load("https://image.tmdb.org/t/p/w500" + list?.get(position)?.poster_path).into(holder.imageView);
 
         // sets the image to the imageview from our itemHolder class устанавливает для изображения значение imageview из нашего класса itemHolder
@@ -49,11 +49,15 @@ class Adapter(private val list: List<ResultX>?, val mItemClickListener: ItemClic
     }
 
     // Holds the views for adding it to image and text Содержит виды для добавления к изображению и тексту
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) { // ВАЖНО снизу производить корректную инициализацию с верными АЙДИШНИКАМИ
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { // ВАЖНО снизу производить корректную инициализацию с верными АЙДИШНИКАМИ
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         init {
             itemView.setOnClickListener {
-                mItemClickListener.onItemClick(adapterPosition)
+                // ? - ЕСЛИ НЕ NULL
+                list?.get(position)?.id?.let { it -> mItemClickListener.onItemClick(it) }
+                // по позиции вытягиваем АЙДИ и если всё не НУЛЛ то вызываем onItemClick (( 59 строка в MoviesActivity ))
+                // после провала в 59 строку --- отправили intent на другой экран | разместив в этот экран ТОТ id ячейки которую нажали под тем ключом id который написали в 60 строке
+
             }
         }
     }

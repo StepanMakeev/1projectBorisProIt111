@@ -1,5 +1,6 @@
 package ru.stepanmakeev.a1projectborisproit
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -42,6 +43,7 @@ class MoviesActivity : AppCompatActivity() {
 
                 // This will pass the ArrayList to our Adapter Это передаст ArrayList нашему адаптеру
                 val adapter = Adapter(response?.body()?.results, this)
+                    // МЫ ПЕРЕДАЛИ СПИСОК ВСЕХ ФИЛЬМОВ В АДАПТЕР и провалились в адаптер на проверку в 57 строку
 
                 // Setting the Adapter with the recyclerview Установив адаптер с помощью recyclerview
                 recyclerview.adapter = adapter
@@ -53,8 +55,11 @@ class MoviesActivity : AppCompatActivity() {
 
             }
 
-            override fun onItemClick(position: Int) {
-                Toast.makeText(this@MoviesActivity, "click $position", Toast.LENGTH_SHORT).show()
+            override fun onItemClick(id: Int) {
+                val intent = Intent(this@MoviesActivity, MoviesDetailsActivity::class.java) //переменная val, метод Intent, отправляемся из this, в MoviesActivity
+                intent.putExtra("id", id)
+                startActivity(intent)
+                // после провала в 59 строку --- отправили intent на другой экран | разместив в этот экран ТОТ id ячейки которую нажали под тем ключом id в 60 строке
             }
         })
 
